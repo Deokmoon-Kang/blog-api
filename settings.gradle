@@ -1,1 +1,4 @@
 rootProject.name = 'blog'
+include 'blog-search-application'
+include 'search-feign'
+

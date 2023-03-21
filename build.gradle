@@ -41,3 +41,9 @@ project(':blog-search-application') {
 
     }
 }
+
+project(':blog-search-feign') {
+    dependencies {
+
+    }
+}

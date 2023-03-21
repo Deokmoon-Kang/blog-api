@@ -1,4 +1,5 @@
 rootProject.name = 'blog'
 include 'blog-search-application'
-include 'search-feign'
+include 'blog-search-feign'
+include 'blog-search-keyword-api'
 

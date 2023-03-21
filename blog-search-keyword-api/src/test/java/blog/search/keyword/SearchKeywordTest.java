@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class SearchKeywordTest {
 
@@ -15,6 +16,15 @@ class SearchKeywordTest {
         SearchKeyword searchKeyword = new SearchKeyword(keyWord);
 
         assertThat(searchKeyword.retrieveSearchCount()).isEqualTo(1L);
+    }
+
+    @DisplayName("검색 키워드를 50자를 넘기면 예외가 발생한다.")
+    @Test
+    final void makeExceptionWhenKeywordLengthOver() {
+        final String keyWord = "012345678901234567890123456789012345678901234567892";
+
+        assertThatThrownBy(() -> new SearchKeyword(keyWord))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
 }

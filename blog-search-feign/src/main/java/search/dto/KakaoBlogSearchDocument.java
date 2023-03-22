@@ -1,14 +1,23 @@
 package search.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 public class KakaoBlogSearchDocument {
     private String title;
     private String contents;
     private String url;
-    private String blogName;
-    private String thumbNail;
-    private LocalDate dateTime;
+    private String blogname;
+    private String thumbnail;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+    private LocalDateTime datetime;
+
+    private int size;
+    private int current;
+    private int page;
 
     public KakaoBlogSearchDocument() {}
 
@@ -18,14 +27,14 @@ public class KakaoBlogSearchDocument {
             , String url
             , String blogName
             , String thumbNail
-            , LocalDate dateTime
+            , LocalDateTime dateTime
     ) {
         this.title = title;
         this.contents = contents;
         this.url = url;
-        this.blogName = blogName;
-        this.thumbNail = thumbNail;
-        this.dateTime = dateTime;
+        this.blogname = blogName;
+        this.thumbnail = thumbNail;
+        this.datetime = dateTime;
     }
 
     public String getTitle() {
@@ -52,27 +61,45 @@ public class KakaoBlogSearchDocument {
         this.url = url;
     }
 
-    public String getBlogName() {
-        return blogName;
+    public String getBlogname() {
+        return blogname;
     }
 
-    public void setBlogName(String blogName) {
-        this.blogName = blogName;
+    public void setBlogname(String blogname) {
+        this.blogname = blogname;
     }
 
-    public String getThumbNail() {
-        return thumbNail;
+    public String getThumbnail() {
+        return thumbnail;
     }
 
-    public void setThumbNail(String thumbNail) {
-        this.thumbNail = thumbNail;
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
-    public LocalDate getDateTime() {
-        return dateTime;
+    public LocalDateTime getDatetime() {
+        return datetime;
     }
 
-    public void setDateTime(LocalDate dateTime) {
-        this.dateTime = dateTime;
+    public void setDatetime(LocalDateTime datetime) {
+        this.datetime = datetime;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public int getCurrent() {
+        return current;
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public void makePagination(int page, int size, int current) {
+        this.size = size;
+        this.page = page;
+        this.current = current;
     }
 }

@@ -5,12 +5,12 @@ import search.dto.KakaoBlogSearchMeta;
 
 import java.util.List;
 
-public class KakaoBlogSearchResponse {
+public class KakaoBlogSearchResult {
     private KakaoBlogSearchMeta meta;
     private List<KakaoBlogSearchDocument> documents;
 
-    public KakaoBlogSearchResponse() {}
-    public KakaoBlogSearchResponse(KakaoBlogSearchMeta meta, List<KakaoBlogSearchDocument> documents) {
+    public KakaoBlogSearchResult() {}
+    public KakaoBlogSearchResult(KakaoBlogSearchMeta meta, List<KakaoBlogSearchDocument> documents) {
         this.meta = meta;
         this.documents = documents;
     }
@@ -23,7 +23,11 @@ public class KakaoBlogSearchResponse {
         this.meta = meta;
     }
 
-    public List<KakaoBlogSearchDocument> getDocuments() {
+    public List<KakaoBlogSearchDocument> getDocuments(int page, int size) {
+        int index = 0;
+        for (KakaoBlogSearchDocument kakaoBlogSearchDocument : documents) {
+            kakaoBlogSearchDocument.makePagination(page, size, index++);
+        }
         return documents;
     }
 

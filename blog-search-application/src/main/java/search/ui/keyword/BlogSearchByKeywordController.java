@@ -1,16 +1,15 @@
 package search.ui.keyword;
 
-import search.dto.KakaoBlogSearchDocument;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import search.keyword.application.BlogSearchByKeywordService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import search.keyword.dto.BlogSearchDocument;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/v1/blog")
@@ -28,7 +27,7 @@ public class BlogSearchByKeywordController {
     }
 
     @GetMapping("/search")
-    ResponseEntity<List<KakaoBlogSearchDocument>> blogSearchByKeyword(
+    ResponseEntity<List<BlogSearchDocument>> blogSearchByKeyword(
             @RequestParam(value = "query", required = true) String keyword
             , @RequestParam(value = "sort", required = false, defaultValue = DEFAULT_SORT) String sort
             , @RequestParam(value = "page", required = false, defaultValue = DEFAULT_PAGE) int page

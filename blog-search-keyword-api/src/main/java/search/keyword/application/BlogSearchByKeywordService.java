@@ -3,10 +3,10 @@ package search.keyword.application;
 import org.springframework.transaction.annotation.Transactional;
 import search.client.BlogSearchClient;
 import org.springframework.stereotype.Service;
-import search.dto.KakaoBlogSearchDocument;
-import search.dto.KakaoBlogSearchResponse;
+import search.dto.KakaoBlogSearchResult;
 import search.keyword.domain.BlogSearchResultRepository;
 import search.keyword.domain.SearchKeyword;
+import search.keyword.dto.BlogSearchDocument;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,18 +25,17 @@ public class BlogSearchByKeywordService {
     }
 
     @Transactional
-    public List<KakaoBlogSearchDocument> blogSearchByKeyword(String keyword, String sort, int page, int size) {
-        KakaoBlogSearchResponse kakaoBlogSearchResponse = blogSearchClient.searchBlogByKeyword(keyword, sort, page, size);
+    public List<BlogSearchDocument> blogSearchByKeyword(String keyword, String sort, int page, int size) {
+        KakaoBlogSearchResult kakaoBlogSearchResult = blogSearchClient.searchBlogByKeyword(keyword, sort, page, size);
         Optional<SearchKeyword> searchKeyword = blogSearchResultRepository.findById(keyword);
 
         if (searchKeyword.isPresent()) {
             searchKeyword.get().increaseSearchCount();
             saveSearchKeyword(searchKeyword.get());
         } else {
-            System.out.println("==========저장===========");
             saveSearchKeyword(new SearchKeyword(keyword));
         }
-        return kakaoBlogSearchResponse.getDocuments();
+        return BlogSearchDocument.makeDocumentsBySearchResult(kakaoBlogSearchResult.getDocuments(page, size));
     }
 
     @Transactional

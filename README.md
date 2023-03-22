@@ -1,3 +1,19 @@
+## 기능 구현 API
+블로그검색
+~~~http request
+method: get
+locat test url: localhost:8080/v1/blog/search?query=keyword" 
+~~~
+인기검색어
+~~~http request
+method: get
+local test url: localhost:8080//v1/blog/popular/keyword
+~~~
+
+## jar 다운로드(github 링크)
+- https://github.com/Deokmoon-Kang/blog-api
+- master 브랜치
+
 ## 기능 요구사항
 ### 블로그 검색
 - `키워드`를 통해 블로그를 `검색`

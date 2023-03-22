@@ -7,6 +7,7 @@ import search.keyword.application.BlogSearchByKeywordService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import search.keyword.dto.BlogSearchDocument;
+import search.keyword.dto.BlogSearchPopularKeyword;
 
 import java.util.Arrays;
 import java.util.List;
@@ -44,7 +45,12 @@ public class BlogSearchByKeywordController {
         if (size < 10) {
             size = Integer.valueOf(DEFAULT_SIZE);
         }
-        return ResponseEntity.ok().body(blogSearchByKeywordService.blogSearchByKeyword(keyword, sort, page, size));
+        return ResponseEntity.ok().body(blogSearchByKeywordService.blogSearchByKeyword(keyword.trim(), sort, page, size));
+    }
+
+    @GetMapping("/popular/keyword")
+    ResponseEntity<List<BlogSearchPopularKeyword>> retrievePopularBlogSearchKeyword() {
+        return ResponseEntity.ok().body(blogSearchByKeywordService.retrievePopularBlogSearchKeyword());
     }
 
 }

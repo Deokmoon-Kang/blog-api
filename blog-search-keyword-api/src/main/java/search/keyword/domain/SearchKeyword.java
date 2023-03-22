@@ -34,6 +34,14 @@ public class SearchKeyword {
         this.searchCount++;
     }
 
+    public String getKeyWord() {
+        return keyWord;
+    }
+
+    public long getSearchCount() {
+        return searchCount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

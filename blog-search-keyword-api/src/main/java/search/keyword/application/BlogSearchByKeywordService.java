@@ -1,5 +1,7 @@
 package search.keyword.application;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 import search.client.BlogSearchClient;
 import org.springframework.stereotype.Service;
@@ -7,9 +9,12 @@ import search.dto.KakaoBlogSearchResult;
 import search.keyword.domain.BlogSearchResultRepository;
 import search.keyword.domain.SearchKeyword;
 import search.keyword.dto.BlogSearchDocument;
+import search.keyword.dto.BlogSearchPopularKeyword;
 
 import java.util.List;
 import java.util.Optional;
+
+import static search.keyword.common.CommonConstants.POPULAR_RANK_SIZE;
 
 @Transactional(readOnly = true)
 @Service
@@ -43,4 +48,9 @@ public class BlogSearchByKeywordService {
         blogSearchResultRepository.save(searchKeyword);
     }
 
+    public List<BlogSearchPopularKeyword> retrievePopularBlogSearchKeyword() {
+        List<SearchKeyword> popularKeyword = blogSearchResultRepository.findAllOrderBySearchCountDescWithLimit(POPULAR_RANK_SIZE);
+
+        return BlogSearchPopularKeyword.makePopularKeywordResult(popularKeyword);
+    }
 }

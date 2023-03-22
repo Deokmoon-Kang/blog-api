@@ -1,6 +1,4 @@
-package blog.search.keyword;
-
-import org.hibernate.annotations.ColumnDefault;
+package search.keyword.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,6 +28,10 @@ public class SearchKeyword {
 
     public long retrieveSearchCount() {
         return this.searchCount;
+    }
+
+    public void increaseSearchCount() {
+        this.searchCount++;
     }
 
     @Override

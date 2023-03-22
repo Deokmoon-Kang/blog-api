@@ -10,5 +10,6 @@ import search.dto.KakaoBlogSearchResponse;
 public interface BlogSearchClient {
 
     @GetMapping("")
-    KakaoBlogSearchResponse searchBlogByKeyword(@RequestParam(value = "query") String keyword);
+    KakaoBlogSearchResponse searchBlogByKeyword(@RequestParam(value = "query", required = true) String keyword, @RequestParam(value = "sort", required = false) String sort
+                                                , @RequestParam(value = "page", required = false) int page, @RequestParam(value = "size", required = false) int size);
 }

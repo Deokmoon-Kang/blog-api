@@ -1,4 +1,4 @@
-package blog.search.keyword;
+package search.keyword.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

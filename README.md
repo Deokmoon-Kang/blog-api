@@ -10,9 +10,10 @@ method: get
 local test url: localhost:8080//v1/blog/popular/keyword
 ~~~
 
-## jar 다운로드(github 링크)
+## jar 다운로드
 - https://github.com/Deokmoon-Kang/blog-api
 - master 브랜치
+- multi-module 하나의 jar로 생성하지 못해 jar파일 생성 못했습니다... 좀 더 찾아보고 늦지 않게 업로드 하도록 하겠습니다...
 
 ## 기능 요구사항
 ### 블로그 검색

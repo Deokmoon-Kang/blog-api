@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Objects;
 
+import static search.keyword.common.CommonErrorMessage.INVALID_KEYWORD_LENGTH;
+
 @Entity
 public class SearchKeyword {
 
@@ -20,7 +22,7 @@ public class SearchKeyword {
 
     public SearchKeyword(String keyWord) {
         if (keyWord.length() > MAX_LENGTH_KEYWORD) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_KEYWORD_LENGTH.getErrorMessage());
         }
         this.keyWord = keyWord;
         this.searchCount = DEFAULT_COUNT;

@@ -12,13 +12,14 @@ import search.keyword.dto.BlogSearchPopularKeyword;
 import java.util.Arrays;
 import java.util.List;
 
+import static search.keyword.common.CommonConstants.DEFAULT_PAGE;
+import static search.keyword.common.CommonConstants.DEFAULT_SIZE;
+import static search.keyword.common.CommonConstants.DEFAULT_SORT;
+import static search.keyword.common.CommonErrorMessage.INVALID_KEYWORD_FORMAT_IS_EMPTY;
+
 @RestController
 @RequestMapping("/v1/blog")
 public class BlogSearchByKeywordController {
-
-    private static final String DEFAULT_SORT = "accuracy";
-    private static final String DEFAULT_PAGE = "1";
-    private static final String DEFAULT_SIZE = "10";
     private static final List<String> KIND_OF_SORT = Arrays.asList("accuracy", "recency");
 
     private final BlogSearchByKeywordService blogSearchByKeywordService;
@@ -34,7 +35,7 @@ public class BlogSearchByKeywordController {
             , @RequestParam(value = "page", required = false, defaultValue = DEFAULT_PAGE) int page
             , @RequestParam(value = "size", required = false, defaultValue = DEFAULT_SIZE) int size) {
         if (keyword.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_KEYWORD_FORMAT_IS_EMPTY.getErrorMessage());
         }
         if (!KIND_OF_SORT.contains(sort)) {
             sort = DEFAULT_SORT;

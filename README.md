@@ -14,6 +14,9 @@ local test url: localhost:8080//v1/blog/popular/keyword
 - https://github.com/Deokmoon-Kang/blog-api
 - master 브랜치
 - multi-module 하나의 jar로 생성하지 못해 jar파일 생성 못했습니다... 좀 더 찾아보고 늦지 않게 업로드 하도록 하겠습니다...
+  - 다른 환경에서 bootJar로 하니 되어서 업로드 합니다.
+    - 루트 경로의 blog-search-application-0.0.1-SNAPSHOT.jar
+    - [구글드라이브- 클릭](https://drive.google.com/file/d/1AeDU7DIrs8WTz_p22_fBbPt1VadOTl0R/view?usp=sharing)
 
 ## 기능 요구사항
 ### 블로그 검색

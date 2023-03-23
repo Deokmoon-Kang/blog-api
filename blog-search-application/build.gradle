@@ -1,4 +1,7 @@
-bootJar { enabled = false }
+bootJar {
+    enabled = true
+    mainClass = 'search.BlogApplication'
+}
 jar { enabled = true }
 
 dependencies {
